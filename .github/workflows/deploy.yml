@@ -1,9 +1,8 @@
 name: Deploy React App to Server
 
-
 on:
   push:
-    branches: [ main ]  # main 브랜치에 push 될 때마다 실행
+    branches: [ main ]
 
 env:
   IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/react-frontend:latest
@@ -24,8 +23,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME .
-        working-directory: ./frontend
+        run: docker build -t $IMAGE_NAME ./frontend
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
