@@ -24,7 +24,6 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t $IMAGE_NAME .
-        working-directory: ./frontend
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
