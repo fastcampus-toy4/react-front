@@ -1,4 +1,4 @@
-name: Deploy React App to Server
+kname: Deploy React App to Server
 
 on:
   push:
@@ -23,7 +23,8 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME ./frontend
+        run: docker build -t $IMAGE_NAME .
+        working-directory: ./frontend
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
@@ -39,3 +40,4 @@ jobs:
             docker stop $CONTAINER_NAME || true
             docker rm $CONTAINER_NAME || true
             docker run -d --name $CONTAINER_NAME -p 3000:80 $IMAGE_NAME
+
