@@ -35,8 +35,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull $IMAGE_NAME
-            docker stop $CONTAINER_NAME || true
-            docker rm $CONTAINER_NAME || true
-            docker run -d --name $CONTAINER_NAME -p 3000:80 $IMAGE_NAME
-
+            docker pull ${{ secrets.DOCKER_USERNAME }}/react-frontend:latest
+            docker stop react-frontend || true
+            docker rm react-frontend || true
+            docker run -d --name react-frontend -p 3000:80 ${{ secrets.DOCKER_USERNAME }}/react-frontend:latest
