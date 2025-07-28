@@ -5,7 +5,7 @@ import HomePage from './pages/Home/HomePage';
 import ChatPage from './pages/Chat/ChatPage';
 
 const SearchPage = () => <h1 style={{padding: '50px'}}>🔍 채팅 검색 페이지</h1>;
-const LibraryPage = () => <h1 style={{padding: '50px'}}>📚 라이브러리 페이지</h1>;
+const RepositoryPage = () => <h1 style={{padding: '50px'}}>📚 맛집 추천 저장소 페이지</h1>;
 const LoginPage = () => <h1 style={{padding: '50px'}}>🔑 로그인 페이지</h1>;
 
 
@@ -20,7 +20,7 @@ function App() {
         
         {/* 새로 추가된 페이지 경로들 */}
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/library" element={<LibraryPage />} />
+        <Route path="/repository" element={<RepositoryPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route>
     </Routes>
@@ -28,5 +28,3 @@ function App() {
 }
 
 export default App;
-
-/* test code */ 
