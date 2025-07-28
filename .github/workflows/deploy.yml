@@ -1,4 +1,4 @@
-kname: Deploy React App to Server
+name: Deploy React App to Server
 
 on:
   push:
