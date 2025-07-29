@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './ChatBot.css';
 import ChatInput from './ChatInput'; 
 import likeIcon from 'assets/images/like.png';

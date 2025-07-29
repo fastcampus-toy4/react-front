@@ -1,14 +1,14 @@
 .chatbot-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   flex-grow: 1;
   background-color: #ffffff;
 }
 
 .message-area {
   flex-grow: 1; 
-  padding-top: 10px;
+  padding-top: 30px;
   padding-bottom: 40px;
   padding-right: 29%;
   padding-left: 29%; 
@@ -261,8 +261,6 @@
 .message-area::-webkit-scrollbar-track {
   background-color: transparent; /* 스크롤바 트랙 색상 (투명하게) */
 }
-
-
 
 
 @keyframes fadeInOut {

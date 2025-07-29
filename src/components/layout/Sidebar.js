@@ -41,7 +41,7 @@ function Sidebar({ isOpen, onToggle }) {
           <img src={newChatIcon} alt="새 채팅" className="button-icon-img" />
           <span className="button-text">새 채팅</span>
         </Link>
-        <Link to="/search" className="sidebar-button">
+        <Link to="/history" className="sidebar-button">
           <img src={searchIcon} alt="채팅 검색" className="button-icon-img" />
           <span className="button-text">채팅 검색</span>
         </Link>

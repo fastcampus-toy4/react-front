@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/Home/HomePage';
 import ChatPage from './pages/Chat/ChatPage';
-// import SearchPage from './pages/Search/SearchPage';
 import RepositoryPage from './pages/Repository/RepositoryPage';
+import HistoryTimeline from './pages/History/HistoryTimeline';
 import LoginPage from './pages/Login/LoginPage';
 
 
@@ -15,8 +15,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/chat/:id" element={<ChatPage />} /> 
-        {/* <Route path="/search" element={<SearchPage />} /> */}
         <Route path="/repository" element={<RepositoryPage />} />
+        <Route path="/history" element={<HistoryTimeline />} />
       </Route>
 
       <Route path="/login" element={<LoginPage />} />
