@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import logoImage from 'assets/images/logo.png';
 
-// 1. 일러스트에 표시할 동적 텍스트 목록
+// 일러스트에 표시할 동적 텍스트 목록
 const dynamicContent = [
   { text: "난 점메추봇이야", emoji: "🤖" },
   { text: "오늘 뭐 먹을래?", emoji: "🤔" },
