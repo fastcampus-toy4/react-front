@@ -3,10 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/Home/HomePage';
 import ChatPage from './pages/Chat/ChatPage';
-
-const SearchPage = () => <h1 style={{padding: '50px'}}>🔍 채팅 검색 페이지</h1>;
-const RepositoryPage = () => <h1 style={{padding: '50px'}}>📚 맛집 추천 저장소 페이지</h1>;
-const LoginPage = () => <h1 style={{padding: '50px'}}>🔑 로그인 페이지</h1>;
+// import SearchPage from './pages/Search/SearchPage';
+// import RepositoryPage from './pages/Repository/RepositoryPage';
+import LoginPage from './pages/Login/LoginPage';
 
 
 function App() {
@@ -15,14 +14,12 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<ChatPage />} />
-        {/* 나중에 실제 채팅 기록을 보여줄 경로. :id는 변할 수 있다는 의미 */}
         <Route path="/chat/:id" element={<ChatPage />} /> 
-        
-        {/* 새로 추가된 페이지 경로들 */}
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/repository" element={<RepositoryPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/search" element={<SearchPage />} />
+        <Route path="/repository" element={<RepositoryPage />} /> */}
       </Route>
+
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }
