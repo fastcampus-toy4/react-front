@@ -1,117 +1,252 @@
-/* 전체 페이지 클래스명 변경 */
-.repository-page {
-  padding: 2rem;
-  background-color: #f8f9fa;
-  font-family: 'Pretendard', sans-serif;
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Sunflower:wght@500;700&display=swap');
+
+/* --- 기본 레이아웃 --- */
+.folder-bg {
+    background-color: #eef2ff; /* indigo-50 */
+    padding: 2rem;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-/* 섹션 클래스명 변경 */
-.repository-section {
-  margin-bottom: 3rem;
-}
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+.main-title {
+    font-family: 'Sunflower', sans-serif;
+    font-size: 2.25rem; /* 36px */
+    text-align: center;
+    color: #374151; /* gray-700 */
+    margin-bottom: 2rem;
 }
 
-/* 가로 스크롤 카드 리스트 */
-.card-list-horizontal {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1.5rem;
-}
-.card-list-horizontal::-webkit-scrollbar {
-  height: 8px;
-}
-.card-list-horizontal::-webkit-scrollbar-thumb {
-  background-color: #dee2e6;
-  border-radius: 4px;
+.folder-wrapper {
+    max-width: 80rem; /* 1280px */
+    margin: 0 auto;
 }
 
-/* 맛집 카드 */
-.restaurant-card {
-  flex: 0 0 280px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  height: 100px;
-  overflow: hidden;
+.folder-tabs {
+    display: flex;
 }
-.restaurant-card.expanded {
-  height: 220px;
+
+.folder-tab {
+    background-color: #c7d2fe; /* indigo-200 */
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    position: relative;
+    bottom: -1px;
+    border: 1px solid #c7d2fe;
+    border-bottom: none;
+}
+
+.folder-tab.active {
+    background-color: #e0e7ff; /* indigo-100 */
+}
+
+.folder-tab h2 {
+    font-weight: 700;
+    color: #3730a3; /* indigo-800 */
+    margin: 0;
+}
+
+.folder-container {
+    background-color: #e0e7ff; /* indigo-100 */
+    border-radius: 0 0 0.5rem 0.5rem;
+    border: 1px solid #c7d2fe; /* indigo-200 */
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+}
+
+/* --- 카드 그리드 --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- 폴더 카드 --- */
+.folder-card {
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+    height: 120px; /* 접혔을 때 높이 */
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
+    cursor: pointer;
+    padding: 1rem;
+    position: relative;
+}
+
+.folder-card.expanded {
+    height: 240px; /* 펼쳤을 때 높이 (더 간결하게) */
 }
 
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
-.card-header h3 {
-  font-size: 1.25rem;
-  margin: 0;
+
+.card-title {
+    font-weight: 700;
+    font-size: 1.125rem; /* 18px */
+    color: #1f2937;
+    margin: 0;
+    padding-right: 2.5rem; /* 좋아요 버튼 공간 */
 }
+
+.card-body-wrapper {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column; /* 기본은 세로 배치 */
+    height: calc(100% - 2rem); /* 헤더 높이를 제외한 나머지 공간 */
+}
+
+.folder-card.expanded .card-body-wrapper {
+    flex-direction: row; /* 펼쳤을 때 가로 배치로 변경 */
+    gap: 1rem;
+}
+
 .card-menu {
-  font-size: 0.9rem;
-  color: #868e96;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 1rem;
+    font-size: 0.875rem; /* 14px */
+    color: #4b5563;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0; /* 줄어들지 않음 */
 }
 
-/* 카드 상세 정보 */
+.folder-card.expanded .card-menu {
+    white-space: normal; /* 펼쳤을 때 줄바꿈 허용 */
+    flex-basis: 45%; /* 가로 너비의 45% 차지 */
+}
+
+/* --- 좋아요 버튼 --- */
+.like-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+.heart-icon {
+    width: 1.5rem; /* 24px */
+    height: 1.5rem;
+    transition: all 0.2s ease-in-out;
+}
+.like-btn .heart-icon {
+    color: #e5e7eb; /* 비활성화 색상 */
+}
+.like-btn.liked .heart-icon {
+    color: #ef4444; /* 활성화 색상 */
+}
+.like-btn:hover .heart-icon {
+    transform: scale(1.2);
+}
+
+
+/* --- 카드 상세 정보 --- */
 .card-details {
-  font-size: 0.85rem;
-  line-height: 1.6;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    font-size: 0.875rem;
+    line-height: 1.6;
 }
+
+.folder-card.expanded .card-details {
+    max-height: 100%;
+    opacity: 1;
+    flex-basis: 55%; /* 가로 너비의 55% 차지 */
+    border-left: 1px dashed #e5e7eb;
+    padding-left: 1rem;
+}
+
 .card-details p {
-  margin: 0.25rem 0;
-}
-.card-details a {
-  display: inline-block;
-  margin-top: 0.75rem;
-  font-weight: bold;
-  color: #20c997;
-  text-decoration: none;
+    margin: 0.25rem 0;
 }
 
-/* 삭제 버튼 스타일 */
-.delete-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #ced4da;
-  cursor: pointer;
+.map-link {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
 }
-.see-more-btn, .refresh-btn, .keyword-btn {
-  border: 1px solid #dee2e6;
-  background-color: white;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-.see-more-btn {
-  align-self: center;
+.map-link:hover {
+    text-decoration: underline;
 }
 
-/* 키워드 리스트 */
+/* --- 더보기 & 키워드 --- */
+.see-more-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+.see-more-container button {
+    background-color: white;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+.see-more-container button:hover {
+    background-color: #f9fafb;
+}
+
+.keyword-section {
+    margin-top: 3rem;
+    border-top: 2px dashed #c7d2fe;
+    padding-top: 1.5rem;
+}
+.keyword-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.keyword-header h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #3730a3;
+    margin: 0;
+}
+.refresh-btn {
+    background-color: white;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+    border-radius: 9999px;
+    cursor: pointer;
+    width: 2rem; /* 아이콘 버튼 크기 */
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem; /* 하트 아이콘 크기 조절 */
+    line-height: 1; /* 세로 정렬을 위해 추가 */
+}
+.refresh-btn:hover {
+    background-color: #f9fafb;
+}
+
 .keyword-list {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
 }
-.keyword-btn:hover {
-  background-color: #f1f3f5;
+.keyword-list button {
+    background-color: white;
+    border: 1px solid #c7d2fe;
+    color: #3730a3;
+    font-size: 0.875rem;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+.keyword-list button:hover {
+    background-color: #fafaff;
 }

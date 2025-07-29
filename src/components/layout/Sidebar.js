@@ -46,8 +46,8 @@ function Sidebar({ isOpen, onToggle }) {
           <span className="button-text">채팅 검색</span>
         </Link>
         <Link to="/repository" className="sidebar-button">
-          <img src={libraryIcon} alt="맛집 추천 저장소" className="button-icon-img" />
-          <span className="button-text">맛집 추천 저장소</span>
+          <img src={libraryIcon} alt="맛집 보관함" className="button-icon-img" />
+          <span className="button-text">맛집 보관함</span>
         </Link>
       </div>
       
