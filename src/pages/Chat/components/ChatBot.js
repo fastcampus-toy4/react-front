@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './ChatBot.css';
 import ChatInput from './ChatInput'; 
-import logoImage from 'assets/images/logo.png';
 import likeIcon from 'assets/images/like.png';
 import likeFilledIcon from 'assets/images/like-filled.png';
 import dislikeIcon from 'assets/images/dislike.png';
@@ -39,11 +38,7 @@ function ChatBot({ messages, onSend, feedback, toast, copyStatus, handleCopy, ha
   
   return (
     <div className="chatbot-container">
-      <header className="chat-header">
-        <Link to="/" className="logo">
-          <img src={logoImage} alt="점메추봇 로고" />
-        </Link>
-      </header>
+
       <div className="message-area" ref={messageAreaRef}>
         {messages.filter(Boolean).map((msg, index) => (
            <div key={index} className={`message-wrapper ${msg.sender}`}>

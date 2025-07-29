@@ -1,7 +1,7 @@
 /* 기본 사이드바 컨테이너 */
 .sidebar {
   width: 260px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0);
   color: black;
   display: flex;
   flex-direction: column;
@@ -88,7 +88,7 @@
 /* --- 축소 상태(:not(.open)) 스타일 --- */
 .sidebar:not(.open) {
   width: 65px;
-  background-color: #f5f5f5; 
+  background-color: #ffffff; 
   color: #333;             
   border-right: 1px solid #eaeaea;
 }

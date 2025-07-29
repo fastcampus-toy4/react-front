@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import Header from './Header';
 import Sidebar from './Sidebar';
 import 'App.css';
 
-function MainLayout() {
+function MainLayout() { //Header, footer, sidebar ...
+  // 사이드바 토글 로직
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   return (
-    <div className="app-container">
+    <div className="layout-container">
       <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
-      {/* Outlet이 HomePage.js 또는 ChatPage.js로 바뀝니다. */}
-      <Outlet /> 
+      <div className="content-wrapper">
+        <Header />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

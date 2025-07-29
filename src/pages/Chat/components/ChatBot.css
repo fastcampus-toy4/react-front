@@ -6,22 +6,6 @@
   background-color: #ffffff;
 }
 
-.chat-header {
-  padding: 15px 20px;
-  /* border-bottom: 1px solid #eaeaea; */
-  display: flex;
-  align-items: center;
-}
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-}
-.logo img {
-  height: 30px; /* 로고 이미지의 높이를 지정 (너비는 자동으로 조절됨) */
-  display: block; /* 이미지 아래 불필요한 여백 제거 */
-}
-
 .message-area {
   flex-grow: 1; 
   padding-top: 10px;
@@ -97,6 +81,20 @@
 .feedback-icon-img {
   width: 16px;
   height: 16px;
+}
+
+.feedback-toast {
+  position: absolute; /* 화면 기준으로 위치 */
+  bottom: 150px; /* or 90 하단 입력창보다 살짝 위에 */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 100;
+  animation: fadeInOut 2s forwards;
 }
 
 
@@ -265,42 +263,7 @@
 }
 
 
-.feedback-toast {
-  position: absolute; /* 화면 기준으로 위치 */
-  bottom: 150px; /* 하단 입력창보다 살짝 위에 */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  z-index: 100;
-  animation: fadeInOut 2s forwards;
-}
 
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translate(-50%, 10px); }
-  20% { opacity: 1; transform: translate(-50%, 0); }
-  80% { opacity: 1; transform: translate(-50%, 0); }
-  100% { opacity: 0; transform: translate(-50%, 10px); }
-}
-
-/* --- 이 부분을 CSS 파일 맨 아래에 추가해주세요 --- */
-
-.feedback-toast {
-  position: absolute;
-  bottom: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  z-index: 100;
-  animation: fadeInOut 2s forwards;
-}
 
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translate(-50%, 10px); }
