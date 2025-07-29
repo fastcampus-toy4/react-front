@@ -44,7 +44,7 @@
   padding: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  height: 120px;
+  height: 100px;
   overflow: hidden;
 }
 .restaurant-card.expanded {
@@ -86,7 +86,7 @@
   text-decoration: none;
 }
 
-/* 버튼 스타일 */
+/* 삭제 버튼 스타일 */
 .delete-btn {
   background: none;
   border: none;
