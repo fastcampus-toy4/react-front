@@ -61,7 +61,7 @@ function LoginPage() {
                 required 
               />
             </div>
-            <button type="submit" className="btn btn-primary login-submit-btn">로그인</button>
+            <button type="submit" className="btn btn-primary login-submit-btn"></button>
           </form>
           <div className="find-links">
             <Link to="/find-id">아이디 찾기</Link>

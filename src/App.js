@@ -6,6 +6,7 @@ import ChatPage from './pages/Chat/ChatPage';
 import RepositoryPage from './pages/Repository/RepositoryPage';
 import HistoryTimeline from './pages/History/HistoryTimeline';
 import LoginPage from './pages/Login/LoginPage';
+import FindIdPage from './pages/FindId/FindIdPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       </Route>
 
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/find-id" element={<FindIdPage />} />
     </Routes>
   );
 }
