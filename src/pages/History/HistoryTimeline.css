@@ -81,7 +81,6 @@
 }
 
 .timeline-card {
-    /* global.css의 .card 스타일을 따릅니다. */
     width: 100%;
     text-align: left;
     padding: 1.5rem;
