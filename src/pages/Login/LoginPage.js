@@ -66,7 +66,7 @@ function LoginPage() {
           <div className="find-links">
             <Link to="/find-id">아이디 찾기</Link>
             <span>|</span>
-            <Link to="/find-password">비밀번호 찾기</Link>
+            <Link to="/find-pw">비밀번호 찾기</Link>
           </div>
           <p className="signup-link">
             계정이 없으신가요? <Link to="/signup">회원가입</Link>

@@ -1,0 +1,53 @@
+/* src/pages/FindPw/FindPwPage.css */
+
+.find-pw-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.find-pw-container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.find-pw-container p {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.error-message {
+    background-color: var(--accent1-color); /* 베이지 */
+    color: var(--text-primary);
+    border: 4px solid var(--border-color);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.find-pw-container .btn {
+    width: 100%;
+}
+
+.extra-links {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 4px dashed var(--border-color);
+    font-weight: 700;
+}
+
+.extra-links a {
+    font-size: 1.125rem;
+    color: var(--dark-accent2-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.extra-links a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
