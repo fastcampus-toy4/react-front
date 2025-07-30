@@ -73,7 +73,7 @@ p { font-size: 1.125rem; /* 18px */ }
 }
 
 .btn-secondary {
-    background-color: var(--accent-color); /* Accent 색상은 정의되지 않아 베이지로 대체 */
+    background-color: var(--accent-color); 
     color: var(--text-primary);
 }
 
