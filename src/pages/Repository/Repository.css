@@ -1,262 +1,165 @@
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Sunflower:wght@500;700&display=swap');
+/* Repository.css
+  global.css의 규칙을 보완하는, 이 페이지 전용 레이아웃 스타일입니다.
+*/
 
-/* --- 기본 레이아웃 --- */
-.folder-bg {
-    background-color: #eef2ff; /* indigo-50 */
-    padding: 2rem;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-.main-title {
-    font-family: 'Sunflower', sans-serif;
-    font-size: 2.25rem; /* 36px */
-    text-align: center;
-    color: #374151; /* gray-700 */
-    margin-bottom: 2rem;
-}
-
-.folder-wrapper {
-    max-width: 80rem; /* 1280px */
+.repository-page {
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-.folder-tabs {
-    display: flex;
-}
-
-.folder-tab {
-    background-color: #c7d2fe; /* indigo-200 */
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 2rem;
     position: relative;
-    bottom: -1px;
-    border: 1px solid #c7d2fe;
-    border-bottom: none;
+    overflow: hidden; /* 배경 그래픽이 벗어나지 않도록 */
 }
 
-.folder-tab.active {
-    background-color: #e0e7ff; /* indigo-100 */
+/* --- 배경 그래픽 --- */
+.background-graphic {
+    position: absolute;
+    z-index: -1;
+}
+.accent-bg {
+    background-color: var(--accent1-color);
+    width: 150%;
+    height: 500px;
+    top: 200px;
+    left: -25%;
+    transform: rotate(-5deg);
+}
+.primary-circle {
+    background-color: var(--dark-accent2-color);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    top: 50px;
+    right: -50px;
 }
 
-.folder-tab h2 {
-    font-weight: 700;
-    color: #3730a3; /* indigo-800 */
-    margin: 0;
+/* --- 타이포그래피 오버라이드 --- */
+.repository-page h1 {
+    text-align: center;
+    margin-bottom: 3rem;
 }
-
-.folder-container {
-    background-color: #e0e7ff; /* indigo-100 */
-    border-radius: 0 0 0.5rem 0.5rem;
-    border: 1px solid #c7d2fe; /* indigo-200 */
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
-    padding: 1.5rem;
+.repository-page h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 /* --- 카드 그리드 --- */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
-/* --- 폴더 카드 --- */
-.folder-card {
-    background-color: white;
+/* --- Repository 전용 카드 스타일 --- */
+.repository-card {
+    text-align: left; /* global.css의 text-align: center를 오버라이드 */
     transition: all 0.3s ease-in-out;
-    height: 120px;
+    height: 160px;
     overflow: hidden;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
-    cursor: pointer;
-    padding: 1rem;
     position: relative;
 }
-
-.folder-card.expanded {
-    height: 240px;
+.repository-card.expanded {
+    height: 320px;
 }
-
-/* ▼▼▼ 추가된 부분 ▼▼▼ */
-/* '삭제 예정' 상태의 카드 스타일 */
-.folder-card.deleting {
+.repository-card.deleting {
     opacity: 0.5;
-    background-color: #f9fafb;
-    transition: opacity 0.5s ease, background-color 0.5s ease;
-}
-/* ▲▲▲ 추가된 부분 ▲▲▲ */
-
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    transition: opacity 0.5s ease;
 }
 
-.card-title {
-    font-weight: 700;
-    font-size: 1.125rem;
-    color: #1f2937;
+.repository-card h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-primary);
     margin: 0;
-    padding-right: 2.5rem;
+    padding-right: 2.5rem; /* 좋아요 버튼 공간 */
+}
+.repository-card p {
+    font-size: 1rem;
+    margin: 0.5rem 0 0 0;
 }
 
-.card-body-wrapper {
-    margin-top: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 2rem);
+.card-details {
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px dashed var(--border-color);
+    font-size: 1rem;
 }
-
-.folder-card.expanded .card-body-wrapper {
-    flex-direction: row;
-    gap: 1rem;
+.repository-card.expanded .card-details {
+    max-height: 200px;
+    opacity: 1;
 }
-
-.card-menu {
-    font-size: 0.875rem;
-    color: #4b5563;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-shrink: 0;
+.card-details p {
+    margin-bottom: 0.5rem;
 }
-
-.folder-card.expanded .card-menu {
-    white-space: normal;
-    flex-basis: 45%;
+.map-link {
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: underline;
 }
 
 /* --- 좋아요 버튼 --- */
 .like-btn {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: 1rem;
+    right: 1rem;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.25rem;
+    padding: 0;
 }
 .heart-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     transition: all 0.2s ease-in-out;
 }
 .like-btn .heart-icon {
-    color: #e5e7eb; /* 비활성화 색상 */
+    color: #cccccc; /* 비활성화 색상 */
 }
 .like-btn.liked .heart-icon {
-    color: #ef4444; /* 활성화 색상 */
+    color: var(--primary-color);
 }
 .like-btn:hover .heart-icon {
     transform: scale(1.2);
 }
 
-
-/* --- 카드 상세 정보 --- */
-.card-details {
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    font-size: 0.875rem;
-    line-height: 1.6;
-}
-
-.folder-card.expanded .card-details {
-    max-height: 100%;
-    opacity: 1;
-    flex-basis: 55%;
-    border-left: 1px dashed #e5e7eb;
-    padding-left: 1rem;
-}
-
-.card-details p {
-    margin: 0.25rem 0;
-}
-
-.map-link {
-    color: #2563eb;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 0.5rem;
-}
-.map-link:hover {
-    text-decoration: underline;
-}
-
 /* --- 더보기 & 키워드 --- */
 .see-more-container {
     text-align: center;
-    margin-top: 2rem;
-}
-.see-more-container button {
-    background-color: white;
-    border: 1px solid #d1d5db;
-    color: #374151;
-    font-weight: 600;
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-    cursor: pointer;
-}
-.see-more-container button:hover {
-    background-color: #f9fafb;
+    margin-top: 3rem;
 }
 
 .keyword-section {
-    margin-top: 3rem;
-    border-top: 2px dashed #c7d2fe;
-    padding-top: 1.5rem;
+    margin-top: 5rem;
 }
 .keyword-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-}
-.keyword-header h3 {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #3730a3;
-    margin: 0;
+    gap: 1rem;
 }
 .refresh-btn {
-    background-color: white;
-    border: 1px solid #d1d5db;
-    color: #4b5563;
-    border-radius: 9999px;
+    background: none;
+    border: none;
+    font-size: 2rem;
     cursor: pointer;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    line-height: 1;
+    transition: transform 0.5s ease;
 }
 .refresh-btn:hover {
-    background-color: #f9fafb;
+    transform: rotate(180deg);
 }
-
 .keyword-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    margin-top: 1rem;
 }
-.keyword-list button {
-    background-color: white;
-    border: 1px solid #c7d2fe;
-    color: #3730a3;
-    font-size: 0.875rem;
-    padding: 0.25rem 1rem;
-    border-radius: 9999px;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-    cursor: pointer;
-}
-.keyword-list button:hover {
-    background-color: #fafaff;
+.keyword-tag {
+    background-color: var(--accent1-color);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    border: 4px solid var(--border-color);
 }

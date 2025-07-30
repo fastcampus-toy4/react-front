@@ -32,7 +32,8 @@ function ChatInput({ onSend }) {
           />
           <button
             onClick={handleSendMessage}
-            className={input.trim() !== '' ? 'active' : ''}
+            className="btn btn-primary send-button" // global.css 클래스 적용
+            disabled={input.trim() === ''}
           >
             ↑
           </button>

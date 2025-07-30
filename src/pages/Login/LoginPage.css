@@ -1,109 +1,68 @@
+/* LoginPage.css */
+
 /* 전체 페이지 컨테이너 */
 .login-page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fffbeb; /* amber-50 */
+  width: 100%;
+  min-height: 100vh;
   padding: 2rem;
 }
 
-/* 로고 이미지 스타일 */
+/* 로고 텍스트 스타일 */
 .logo {
-  margin-bottom: 3rem;
-  margin-top: -5rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  margin-top: -2rem;
+}
+.logo-text {
+  font-size: 2rem;
+  color: var(--text-primary);
 }
 
-/* 로고 안의 이미지 크기 조절 */
-.logo img {
-  height: 30px;
-  width: auto; 
-}
 
 /* 메인 컨텐츠 래퍼 (폼 + 일러스트) */
 .login-content-wrapper {
   width: 100%;
   max-width: 900px;
   display: flex;
-  background-color: white;
-  border-radius: 1.5rem;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  padding: 0; 
   overflow: hidden;
 }
 
 /* 왼쪽 폼 컨테이너 */
 .login-form-container {
   flex: 1;
-  padding: 4rem 3rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.login-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 2rem;
   text-align: center;
 }
 
 .login-form {
   width: 100%;
+  margin-top: 2rem;
 }
 
-.login-input-group {
-  margin-bottom: 1.5rem;
-}
-
-.login-input-group input {
-  width: 100%;
-  padding: 0.875rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.75rem;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-/* 입력 필드 포커스 시 색상 변경 */
-.login-input-group input:focus {
-  outline: none;
-  border-color: #fbbf24; /* amber-400 */
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
-}
-
-/* 로그인 버튼 색상 변경 */
+/* 로그인 버튼 상단 여백 추가 */
 .login-submit-btn {
   width: 100%;
-  padding: 0.875rem;
-  border: none;
-  border-radius: 0.75rem;
-  background-color: #f59e0b; /* amber-500 */
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-/* 로그인 버튼 호버 시 색상 변경 */
-.login-submit-btn:hover {
-  background-color: #d97706; /* amber-600 */
+  margin-top: 1rem;
 }
 
 .signup-link {
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
-  color: #4b5563;
+  color: var(--text-secondary);
 }
 
-/* 회원가입 링크 색상 변경 */
 .signup-link a {
-  color: #f59e0b; /* amber-500 */
-  font-weight: 600;
+  color: var(--dark-accent2-color); /* global.css 변수 사용 */
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -118,9 +77,8 @@
   font-size: 0.875rem;
 }
 
-/* 링크 스타일 */
 .find-links a {
-  color: #4b5563; /* gray-600 */
+  color: var(--text-secondary);
   text-decoration: none;
   margin: 0 0.5rem;
 }
@@ -135,7 +93,7 @@
 }
 
 
-/* 오른쪽 일러스트 컨테이너 (움직이는 그라데이션 적용) */
+/* 오른쪽 일러스트 컨테이너 */
 .login-illust-container {
   flex: 1;
   display: flex;
@@ -144,51 +102,19 @@
   justify-content: center;
   padding: 2rem;
   text-align: center;
-
-  /* ▼▼▼ 그라데이션 배경 설정 ▼▼▼ */
-  background: linear-gradient(-45deg, #fef3c7, #fde68a, #fbbf24, #f59e0b);
-  background-size: 400% 400%;
-  animation: moveGradient 15s ease infinite;
-}
-
-/* ▼▼▼ 그라데이션을 움직이게 하는 애니메이션 키프레임 ▼▼▼ */
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background-color: var(--dark-accent2-color); /* global.css 변수 사용 */
 }
 
 /* 이모티콘 스타일 */
 .illust-emoji {
   font-size: 5rem;
   margin-bottom: 1rem;
-  animation: fadeInOut 3s infinite;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* 텍스트 스타일 */
 .illust-text {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #78350f; /* amber-900 */
-  animation: fadeInOut 3s infinite;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  color: var(--text-on-dark); /* global.css 변수 사용 */
 }
 
-/* 공용 애니메이션 키프레임 */
-@keyframes fadeInOut {
-  0%, 100% { 
-    opacity: 0; 
-    transform: translateY(15px); 
-  }
-  20%, 80% { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
