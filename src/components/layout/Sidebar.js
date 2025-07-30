@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import newChatIcon from 'assets/images/newchatting.png';
 import searchIcon from 'assets/images/search.png';
-import libraryIcon from 'assets/images/library.png';
+import repositoryIcon from 'assets/images/repository.png';
 import loginIcon from 'assets/images/login.png';
 
 // 임시 데이터 (나중에 실제 API 응답으로 대체될 부분)
@@ -46,7 +46,7 @@ function Sidebar({ isOpen, onToggle }) {
           <span className="button-text">채팅 검색</span>
         </Link>
         <Link to="/repository" className="sidebar-button">
-          <img src={libraryIcon} alt="맛집 보관함" className="button-icon-img" />
+          <img src={repositoryIcon} alt="맛집 보관함" className="button-icon-img" />
           <span className="button-text">맛집 보관함</span>
         </Link>
       </div>
