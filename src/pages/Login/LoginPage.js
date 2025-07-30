@@ -72,7 +72,6 @@ function LoginPage() {
             계정이 없으신가요? <Link to="/signup">회원가입</Link>
           </p>
         </div>
-
         <div className="login-illust-container">
           <div className="illust-emoji">
             {dynamicContent[textIndex].emoji}
