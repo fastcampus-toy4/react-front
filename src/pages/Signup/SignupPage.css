@@ -1,0 +1,10 @@
+/* src/pages/Signup/SignupPage.css */
+
+.signup-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px; /* 폼이 길어질 수 있으니 위아래 여백 추가 */
+  box-sizing: border-box;
+}

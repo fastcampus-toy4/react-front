@@ -39,7 +39,7 @@ function LoginPage() {
       {/* global.css의 .card 스타일을 적용하기 위해 card 클래스를 추가합니다. */}
       <div className="card login-content-wrapper">
         <div className="login-form-container">
-          <h2>로그인</h2>
+          <h2>LOGIN</h2>
           <form onSubmit={handleLogin} className="login-form">
             <div className="input-group">
               <label htmlFor="email">이메일 주소</label>
@@ -61,7 +61,7 @@ function LoginPage() {
                 required 
               />
             </div>
-            <button type="submit" className="btn btn-primary login-submit-btn"></button>
+            <button type="submit" className="btn btn-primary login-submit-btn">로그인</button>
           </form>
           <div className="find-links">
             <Link to="/find-id">아이디 찾기</Link>
