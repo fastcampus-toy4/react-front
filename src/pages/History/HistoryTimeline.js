@@ -1,23 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './HistoryTimeline.css'; // 수정된 CSS 파일을 불러옵니다.
-
-// --- 가상 데이터 (색상 정보는 CSS에서 처리하므로 제거) ---
-const historyData = [
-    {
-        date: "2025년 7월 29일",
-        items: [
-            { chatId: 'chat_abc_123', time: '오후 2:45', title: '강남역 근처 맛집 추천', tags: ['#강남역', '#점심', '#한식'] },
-            { chatId: 'chat_def_456', time: '오전 11:10', title: '당뇨 환자를 위한 저당분 디저트', tags: ['#건강식', '#디저트', '#저당'] }
-        ]
-    },
-    {
-        date: "2025년 7월 28일",
-        items: [
-            { chatId: 'chat_ghi_789', time: '오후 7:20', title: '성수동 분위기 좋은 와인바', tags: ['#성수동', '#와인바', '#데이트'] }
-        ]
-    }
-];
+import './HistoryTimeline.css';
 
 // SVG 아이콘 컴포넌트
 const CalendarIcon = () => (
@@ -27,28 +10,94 @@ const CalendarIcon = () => (
 );
 
 function HistoryTimeline() {
+    const [historyGroups, setHistoryGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
+    // 백엔드에서 채팅 기록을 불러오는 로직
+    useEffect(() => {
+        const fetchHistory = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                // TODO: 로그인 기능 구현 후, 실제 user_id로 변경해야 합니다.
+                const userId = 'test_user_01'; 
+                
+                // 백엔드에 히스토리 조회 API를 요청합니다. (이 API는 직접 만들어야 합니다)
+                // const response = await fetch(`http://localhost:8000/history/${userId}`);
+                // if (!response.ok) {
+                //     throw new Error('대화 기록을 불러오는 데 실패했습니다.');
+                // }
+                // const data = await response.json();
+
+                // --- 현재는 가상 데이터로 대체합니다. ---
+                const mockData = [
+                    { session_id: 'session_abc_123', created_at: '2025-07-29T14:45:00', log_type: 'user_input', content: '강남역 근처 맛집 추천' },
+                    { session_id: 'session_def_456', created_at: '2025-07-29T11:10:00', log_type: 'user_input', content: '당뇨 환자를 위한 저당분 디저트' },
+                    { session_id: 'session_ghi_789', created_at: '2025-07-28T19:20:00', log_type: 'user_input', content: '성수동 분위기 좋은 와인바' }
+                ];
+                // ------------------------------------
+
+                // 백엔드에서 받은 데이터를 날짜별로 그룹화하는 로직
+                const grouped = mockData.reduce((acc, log) => {
+                    const date = new Date(log.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+                    const time = new Date(log.created_at).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+                    if (!acc[date]) {
+                        acc[date] = [];
+                    }
+
+                    // 첫 사용자 메시지를 채팅방의 제목으로 사용
+                    if (!acc[date].some(item => item.chatId === log.session_id)) {
+                         acc[date].push({
+                            chatId: log.session_id,
+                            time: time,
+                            title: log.content,
+                            tags: log.content.split(' ').filter(word => word.length > 1).slice(0, 3).map(tag => `#${tag}`) // 간단한 태그 생성
+                        });
+                    }
+                    return acc;
+                }, {});
+
+                const formattedGroups = Object.keys(grouped).map(date => ({
+                    date,
+                    items: grouped[date]
+                })).sort((a, b) => new Date(b.date) - new Date(a.date)); // 최신 날짜순으로 정렬
+
+                setHistoryGroups(formattedGroups);
+
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchHistory();
+    }, []);
+
     const filteredHistory = useMemo(() => {
-        if (!searchTerm) return historyData;
+        if (!searchTerm) return historyGroups;
         const lowercasedTerm = searchTerm.toLowerCase();
-        return historyData.map(group => ({
+        return historyGroups.map(group => ({
             ...group,
             items: group.items.filter(item => item.title.toLowerCase().includes(lowercasedTerm))
         })).filter(group => group.items.length > 0);
-    }, [searchTerm]);
+    }, [searchTerm, historyGroups]);
 
     const handleHistoryClick = (chatId) => {
         navigate(`/chat/${chatId}`);
     };
 
+    if (loading) return <div className="loading-message">대화 기록을 불러오는 중...</div>;
+    if (error) return <div className="error-message">오류: {error}</div>;
+
     return (
         <div className="timeline-page">
-            {/* h1 태그는 global.css의 스타일을 따릅니다. */}
             <h1>채팅 기록</h1>
             
-            {/* global.css의 .input-group 스타일을 적용합니다. */}
             <div className="input-group search-wrapper">
                 <input
                     type="text"
@@ -74,7 +123,6 @@ function HistoryTimeline() {
                                     <div className="timeline-dot-wrapper">
                                         <div className="timeline-dot"></div>
                                     </div>
-                                    {/* global.css의 .card 스타일을 적용합니다. */}
                                     <div className="card timeline-card">
                                         <p className="card-time">{item.time}</p>
                                         <h4 className="card-title">{item.title}</h4>
@@ -91,7 +139,7 @@ function HistoryTimeline() {
                         </div>
                     ))
                 ) : (
-                    <p className="no-results">검색 결과가 없습니다.</p>
+                    <p className="no-results">표시할 채팅 기록이 없습니다.</p>
                 )}
             </div>
         </div>
