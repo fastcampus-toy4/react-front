@@ -17,6 +17,7 @@
 .sidebar-header {
   padding: 1rem;
   display: flex;
+  margin-bottom: 1.5rem;
   justify-content: flex-end;
 }
 .sidebar-menu {
