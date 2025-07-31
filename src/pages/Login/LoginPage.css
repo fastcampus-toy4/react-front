@@ -1,35 +1,32 @@
 /* LoginPage.css */
 
-/* 전체 페이지 컨테이너 */
+
 .login-page-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
+  align-items: center;
   min-height: 100vh;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
-/* 로고 텍스트 스타일 */
 .logo {
   text-decoration: none;
   margin-bottom: 2rem;
-  margin-top: -2rem;
-}
-.logo-text {
-  font-size: 2rem;
-  color: var(--text-primary);
 }
 
+.logo h2 {
+  margin: 0;
+}
 
 /* 메인 컨텐츠 래퍼 (폼 + 일러스트) */
 .login-content-wrapper {
   width: 100%;
   max-width: 900px;
   display: flex;
-  padding: 0; 
-  overflow: hidden;
+  padding: 0; /* .card의 기본 패딩을 제거하여 내부에서 직접 제어 */
+  overflow: hidden; /* 내부 그래픽이 삐져나오지 않도록 */
 }
 
 /* 왼쪽 폼 컨테이너 */
@@ -42,79 +39,137 @@
   text-align: center;
 }
 
-.login-form {
+/* global.css 스타일을 따르므로, 여기서는 레이아웃 관련 스타일만 추가 */
+.login-form-container .btn-primary {
   width: 100%;
+  margin-top: 1rem;
+}
+
+.extra-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
   margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed var(--border-color);
 }
 
-/* 로그인 버튼 상단 여백 추가 */
-.login-submit-btn {
-  width: 100%;
-  margin-top: 1rem;
-}
-
-.signup-link {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.signup-link a {
-  color: var(--dark-accent2-color); /* global.css 변수 사용 */
+.extra-links a {
+  font-size: 1rem;
   font-weight: 700;
-  text-decoration: none;
-}
-
-.signup-link a:hover {
-  text-decoration: underline;
-}
-
-/* 아이디/비밀번호 찾기 링크 컨테이너 */
-.find-links {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.875rem;
-}
-
-.find-links a {
   color: var(--text-secondary);
   text-decoration: none;
-  margin: 0 0.5rem;
 }
 
-.find-links a:hover {
+.extra-links a:hover {
+  color: var(--primary-color);
   text-decoration: underline;
 }
-
-/* 구분선 스타일 */
-.find-links span {
-  color: #d1d5db; /* gray-300 */
-}
-
 
 /* 오른쪽 일러스트 컨테이너 */
 .login-illust-container {
   flex: 1;
+  background-color: var(--accent-color);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 2rem;
+  align-items: center;
+  position: relative;
+  border-left: 4px solid var(--border-color);
+}
+
+/* 만화 말풍선 스타일 */
+.comic-bubble {
+  background-color: var(--background-color);
+  border: 4px solid var(--border-color);
+  padding: 2rem 2.5rem;
+  position: relative;
   text-align: center;
-  background-color: var(--dark-accent2-color); /* global.css 변수 사용 */
+  transform: rotate(-5deg);
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
 
-/* 이모티콘 스타일 */
-.illust-emoji {
-  font-size: 5rem;
-  margin-bottom: 1rem;
+.comic-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: var(--border-color);
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -10px;
+  margin-bottom: -20px;
 }
 
-/* 텍스트 스타일 */
-.illust-text {
-  font-size: 1.5rem;
+.dynamic-emoji {
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0;
+  /* 애니메이션 추가 */
+  animation: fadeAndChange 3s infinite;
+}
+
+.dynamic-text {
+  font-family: 'Gowun Dodum', sans-serif;
   font-weight: 700;
-  color: var(--text-on-dark); /* global.css 변수 사용 */
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-top: 1rem;
+  /* 애니메이션 추가 */
+  animation: fadeAndChange 3s infinite;
+  animation-delay: 0.1s; /* 이모지와 약간의 시차를 둠 */
 }
 
+/* 배경 점선 그래픽 */
+.dots-graphic {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 2rem;
+  left: 2rem;
+  background-image: radial-gradient(var(--dark-accent-color) 20%, transparent 20%);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  animation: pulse 5s ease-in-out infinite;
+}
+
+
+/* --- 추가된 동적 효과를 위한 Keyframes --- */
+
+/* 말풍선이 통통 튀어나오는 효과 */
+@keyframes popIn {
+  from {
+    transform: rotate(-5deg) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-5deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 텍스트가 바뀌는 타이밍에 맞춰 부드럽게 나타나고 사라지는 효과 */
+@keyframes fadeAndChange {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  15%, 85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 배경 그래픽이 은은하게 깜빡이는 효과 */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+}
