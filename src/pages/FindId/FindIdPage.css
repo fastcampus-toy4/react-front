@@ -8,3 +8,153 @@
   padding: 20px;
   box-sizing: border-box;
 }
+
+.find-id-container {
+    position: relative; /* 뒤로가기 버튼의 위치 기준점이 됩니다. */
+    max-width: 500px;
+    width: 100%;
+    background-color: white;
+    padding: 2.5rem;
+    border: 4px solid var(--border-color, #004E89);
+    text-align: center;
+    border-radius: 0;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+/* --- 뒤로가기 버튼 스타일 (화살표 디자인 변경) --- */
+.back-button {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: none;
+  border: none;
+  width: 30px; 
+  height: 30px; 
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+  /* 가상요소(::before)를 사용해 CSS로 꺾쇠 모양 화살표 그리기 */
+.back-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -50%) rotate(45deg);
+  width: 14px;
+  height: 14px;
+  border-left: 4px solid var(--border-color, #004E89);
+  border-bottom: 4px solid var(--border-color, #004E89);
+  transition: border-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: transparent; 
+  transform: scale(1.1);
+}
+
+.back-button:hover::before {
+    border-color: var(--primary-color, #FF6B35); 
+}
+
+
+.find-id-container h2 {
+    font-family: 'Anton', sans-serif;
+    color: var(--text-primary, #004E89);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary, #004E89);
+    margin-bottom: 0.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.125rem;
+    font-family: 'Gowun Dodum', sans-serif;
+    border: 4px solid var(--border-color, #004E89);
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    background-color: #f0f8ff;
+}
+
+.find-id-container .btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 0;
+    border: 4px solid var(--border-color, #004E89);
+    box-sizing: border-box;
+    margin-top: 3rem;
+}
+
+.find-id-container .btn-primary {
+    background-color: var(--dark-accent1-color, #004E89);
+    color: var(--text-on-dark, #FFFFFF);
+}
+
+.find-id-container .btn:disabled {
+    background-color: #adb5bd;
+    border-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.result-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-weight: 700;
+    border: 4px dashed var(--border-color, #004E89);
+}
+
+.result-message.success {
+    background-color: var(--accent2-color, #EFEFD0);
+    color: var(--dark-accent2-color, #1A659E);
+}
+
+.result-message.error {
+    background-color: var(--accent1-color, #F7C59F);
+    color: var(--primary-color, #FF6B35);
+    border-style: solid;
+}
+
+/* --- 비밀번호 찾기 링크 스타일 --- */
+.extra-links {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px dashed var(--border-color, #004E89);
+}
+
+.extra-links a {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--dark-accent2-color, #1A659E);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.extra-links a:hover {
+    color: var(--primary-color, #FF6B35);
+    text-decoration: underline;
+}

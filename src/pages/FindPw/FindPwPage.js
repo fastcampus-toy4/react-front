@@ -15,15 +15,22 @@ function FindPwPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // (handle... 함수들은 이전과 동일하여 생략)
-  const handleStep1Submit = async (e) => { e.preventDefault(); setLoading(true); setError(null); await new Promise(r => setTimeout(r, 1000)); if (dummyUserDB.some(user => user.email === email)) { alert('인증번호가 발송되었습니다.'); setStep(2); } else { setError('가입되지 않은 이메일입니다.'); } setLoading(false); };
-  const handleStep2Submit = async (e) => { e.preventDefault(); setLoading(true); setError(null); await new Promise(r => setTimeout(r, 1000)); if (authCode === '123456') { setStep(3); } else { setError('인증번호가 올바르지 않습니다.'); } setLoading(false); };
-  const handleStep3Submit = async (e) => { e.preventDefault(); setLoading(true); setError(null); if (password !== confirmPassword) { setError('비밀번호가 일치하지 않습니다.'); setLoading(false); return; } await new Promise(r => setTimeout(r, 1000)); alert('비밀번호가 성공적으로 변경되었습니다.'); navigate('/login'); setLoading(false); };
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  const handleStep1Submit = async (e) => { e.preventDefault(); setLoading(true); setError(null); 
+    await new Promise(r => setTimeout(r, 1000)); if (dummyUserDB.some(user => user.email === email)) { alert('인증번호가 발송되었습니다.'); setStep(2); } else { setError('가입되지 않은 이메일입니다.'); } setLoading(false); };
+  const handleStep2Submit = async (e) => { e.preventDefault(); setLoading(true); setError(null); 
+    await new Promise(r => setTimeout(r, 1000)); if (authCode === '123456') { setStep(3); } else { setError('인증번호가 올바르지 않습니다.'); } setLoading(false); };
+  const handleStep3Submit = async (e) => { e.preventDefault(); setLoading(true); setError(null); 
+    if (password !== confirmPassword) { setError('비밀번호가 일치하지 않습니다.'); setLoading(false); return; } await new Promise(r => setTimeout(r, 1000)); alert('비밀번호가 성공적으로 변경되었습니다.'); navigate('/login'); setLoading(false); };
 
 
   return (
     <div className="find-pw-page-container">
       <div className="card find-pw-container">
+        <button onClick={handleGoBack} className="back-button" title="뒤로가기"></button>
         <h2>FIND PASSWORD</h2>
         
         {/* 1단계: 이메일 입력 */}
@@ -76,8 +83,10 @@ function FindPwPage() {
         )}
 
         <div className="extra-links">
-          <Link to="/login">로그인으로 돌아가기</Link>
-        </div>
+          <Link to="/find-id">아이디 찾기</Link>
+          <span>|</span>
+          <Link to="/login">로그인</Link>
+          </div>
       </div>
     </div>
   );
