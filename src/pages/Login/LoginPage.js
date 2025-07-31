@@ -30,7 +30,7 @@ const handleLogin = async (e) => {
   e.preventDefault();
   try {
     const response = await axios.post(
-      'http://spring-boot-app:8080/api/auth/login',
+      'http://155.248.175.96:8080/api/auth/login',
       {
         email,
         password
