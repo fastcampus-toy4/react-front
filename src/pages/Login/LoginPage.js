@@ -42,7 +42,7 @@ const handleLogin = async (e) => {
     console.log('로그인 성공:', response.data);
     navigate('/');
   } catch (err) {
-    console.error('🚨 로그인 실패!');
+    console.error('🚨 로그인 실패!!!');
     if (err.response) {
       // 서버가 응답했지만 status가 2xx가 아님
       console.error('📡 응답 상태:', err.response.status);
