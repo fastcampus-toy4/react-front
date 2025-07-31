@@ -113,24 +113,37 @@
 // export default HomePage;
 
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 // [중요] 사용하시는 API 서버 주소로 설정하세요.
 const API_BASE_URL = 'http://localhost:9000';
 
-// 백엔드에서 가져올 전체 키워드 목록이라고 가정하는 가상 데이터
+// 백엔드에서 가져올 전체 키워드 목록이라고 가정하는 가상 데이터 => 더미
 const allKeywords = [
   '#강남역 점심', '#혼밥하기 좋은 곳', '#비 오는 날 파전', '#성수동 데이트',
-  '#가성비 맛집', '#특별한 날', '#조용한 카페', '#홍대 디저트'
+  '#가성비 맛집', '#특별한 날', '#조용한 카페', '#홍대 디저트', '#저염식단',
+  '#분위기 좋은 와인바', '#가족 외식'
 ];
 
 function HomePage() {
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    // 화면에 보여줄 추천 키워드를 저장할 state
+    const [suggestions, setSuggestions] = useState([]);
     const navigate = useNavigate();
     const isComposing = useRef(false);
+
+    // ▼▼▼ 추가된 부분 ▼▼▼
+    // 컴포넌트가 처음 렌더링될 때 한 번만 실행됩니다.
+    useEffect(() => {
+        // 전체 키워드를 무작위로 섞습니다.
+        const shuffled = [...allKeywords].sort(() => 0.5 - Math.random());
+        // 앞에서 3개만 잘라서 state에 저장합니다.
+        setSuggestions(shuffled.slice(0, 3));
+    }, []);
+    // ▲▲▲ 추가된 부분 ▲▲▲
 
     // API 호출 및 페이지 이동을 처리하는 로직
     const startChatAndNavigate = useCallback(async (message) => {
@@ -211,9 +224,18 @@ function HomePage() {
                         </button>
                     </form>
                     <div className="suggestion-chips-container">
-                        <button onClick={() => handleSuggestionClick('#강남역 점심')} className="btn btn-secondary suggestion-chip">#강남역 점심</button>
-                        <button onClick={() => handleSuggestionClick('#혼밥하기 좋은 곳')} className="btn btn-secondary suggestion-chip">#혼밥하기 좋은 곳</button>
-                        <button onClick={() => handleSuggestionClick('#비 오는 날 파전')} className="btn btn-secondary suggestion-chip">#비 오는 날 파전</button>
+                        {/* ▼▼▼ 수정된 부분 ▼▼▼ */}
+                        {/* state에 저장된 키워드를 동적으로 렌더링합니다. */}
+                        {suggestions.map(keyword => (
+                            <button 
+                                key={keyword}
+                                onClick={() => handleSuggestionClick(keyword)} 
+                                className="btn btn-secondary suggestion-chip"
+                            >
+                                {keyword}
+                            </button>
+                        ))}
+                        {/* ▲▲▲ 수정된 부분 ▲▲▲ */}
                     </div>
                 </div>
             </div>
