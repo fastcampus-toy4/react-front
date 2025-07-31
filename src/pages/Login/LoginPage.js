@@ -122,7 +122,7 @@ function LoginPage() {
             <Link to="/find-pw">비밀번호 찾기</Link>
           </div>
           <p className="signup-link">
-            계정이 없으신가요? <Link to="/register">회원가입</Link>
+            계정이 없으신가요? <Link to="/signup">회원가입</Link>
           </p>
         </div>
         <div className="login-illust-container">
