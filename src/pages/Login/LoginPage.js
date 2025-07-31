@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import axios  from 'axios';
 // import logoImage from 'assets/images/logo.png';
 
 // 일러스트에 표시할 동적 텍스트 목록
@@ -15,6 +16,7 @@ function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [textIndex, setTextIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -24,8 +26,23 @@ function LoginPage() {
     return () => clearInterval(intervalId);
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    try {
+        const response = await axios.post(
+          'http://localhost:8080/api/auth/login',
+          {
+            email,
+            password
+          },
+          {
+            withCredentials: true
+          }
+        );
+        navigate('/');
+    } catch (err) {
+      console.error('로그인 실패')
+    }
     console.log('로그인 시도:', { email, password });
   };
 
@@ -39,7 +56,7 @@ function LoginPage() {
       {/* global.css의 .card 스타일을 적용하기 위해 card 클래스를 추가합니다. */}
       <div className="card login-content-wrapper">
         <div className="login-form-container">
-          <h2>로그인</h2>
+          <h2>LOGIN</h2>
           <form onSubmit={handleLogin} className="login-form">
             <div className="input-group">
               <label htmlFor="email">이메일 주소</label>
@@ -66,10 +83,10 @@ function LoginPage() {
           <div className="find-links">
             <Link to="/find-id">아이디 찾기</Link>
             <span>|</span>
-            <Link to="/find-password">비밀번호 찾기</Link>
+            <Link to="/find-pw">비밀번호 찾기</Link>
           </div>
           <p className="signup-link">
-            계정이 없으신가요? <Link to="/signup">회원가입</Link>
+            계정이 없으신가요? <Link to="/register">회원가입</Link>
           </p>
         </div>
         <div className="login-illust-container">

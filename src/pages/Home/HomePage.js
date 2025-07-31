@@ -120,6 +120,12 @@ import './HomePage.css';
 // [중요] 사용하시는 API 서버 주소로 설정하세요.
 const API_BASE_URL = 'http://localhost:9000';
 
+// 백엔드에서 가져올 전체 키워드 목록이라고 가정하는 가상 데이터
+const allKeywords = [
+  '#강남역 점심', '#혼밥하기 좋은 곳', '#비 오는 날 파전', '#성수동 데이트',
+  '#가성비 맛집', '#특별한 날', '#조용한 카페', '#홍대 디저트'
+];
+
 function HomePage() {
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -130,7 +136,6 @@ function HomePage() {
     const startChatAndNavigate = useCallback(async (message) => {
         if (message.trim() === '' || isLoading) return;
         setIsLoading(true);
-
         try {
             // 1. /chat/start API를 호출하여 세션 생성 및 첫 메시지 처리 요청
             const response = await fetch(`${API_BASE_URL}/chat/start`, {
@@ -141,7 +146,6 @@ function HomePage() {
                     initial_message: message
                 }),
             });
-
             if (!response.ok) {
                 // 서버에서 온 에러 메시지를 최대한 활용
                 const errorData = await response.json().catch(() => ({ detail: '서버 응답을 처리할 수 없습니다.' }));

@@ -1,165 +1,165 @@
-/* Repository.css
-  global.css의 규칙을 보완하는, 이 페이지 전용 레이아웃 스타일입니다.
-*/
+/* Repository.css (사용자 정의 테마 적용) */
 
 .repository-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden; /* 배경 그래픽이 벗어나지 않도록 */
+  padding: 2rem;
+  position: relative;
+  overflow: hidden; /* 배경 그래픽이 삐져나가지 않도록 */
 }
 
-/* --- 배경 그래픽 --- */
+/* 팝아트 스타일 배경 그래픽 */
 .background-graphic {
     position: absolute;
     z-index: -1;
+    border-radius: 50%;
 }
 .accent-bg {
     background-color: var(--accent1-color);
-    width: 150%;
-    height: 500px;
-    top: 200px;
-    left: -25%;
-    transform: rotate(-5deg);
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -150px;
 }
 .primary-circle {
-    background-color: var(--dark-accent2-color);
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    top: 50px;
-    right: -50px;
+    background-color: var(--primary-color);
+    width: 300px;
+    height: 300px;
+    bottom: -150px;
+    right: -100px;
 }
 
-/* --- 타이포그래피 오버라이드 --- */
-.repository-page h1 {
-    text-align: center;
-    margin-bottom: 3rem;
+/* 1. 키워드 섹션 (위로 이동했으므로 상단 여백 제거) */
+.keyword-section {
+    padding: 1.5rem;
+    border: 4px solid var(--border-color);
+    background-color: white;
 }
-.repository-page h2 {
+.keyword-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.keyword-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center; /* 해시태그 가운데 정렬 */
+    flex-grow: 1; 
+}
+.keyword-tag {
+    background-color: var(--accent1-color);
+    color: var(--text-primary);
+    padding: 0.25rem 0.75rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+.refresh-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 1rem; 
+}
+
+/* 2. 두 영역을 나누는 구분선 */
+.section-divider {
+    margin: 3rem 0; /* 위아래로 충분한 여백 */
+    border: none;
+    height: 4px; /* global.css 테두리 두께와 동일하게 */
+    background-color: var(--border-color); /* global.css 테두리 색상 사용 */
+}
+
+
+.repository-page h1 {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-/* --- 카드 그리드 --- */
+/* 카드 그리드 레이아웃 */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3열 고정 그리드 */
     gap: 2rem;
+    align-items: start;
 }
 
-/* --- Repository 전용 카드 스타일 --- */
+/* 개별 카드 스타일 */
 .repository-card {
-    text-align: left; /* global.css의 text-align: center를 오버라이드 */
-    transition: all 0.3s ease-in-out;
-    height: 160px;
-    overflow: hidden;
-    position: relative;
+    text-align: left;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .repository-card.expanded {
-    height: 320px;
+    /* 확장 시 스타일 (필요 시 추가) */
 }
+
 .repository-card.deleting {
-    opacity: 0.5;
-    transition: opacity 0.5s ease;
-}
-
-.repository-card h3 {
-    font-family: 'Anton', sans-serif;
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    margin: 0;
-    padding-right: 2.5rem; /* 좋아요 버튼 공간 */
-}
-.repository-card p {
-    font-size: 1rem;
-    margin: 0.5rem 0 0 0;
-}
-
-.card-details {
-    max-height: 0;
+    /* 하트가 회색이 된 후, 2.5초 뒤에 사라지는 애니메이션이 실행됩니다. */
     opacity: 0;
-    transition: all 0.3s ease-in-out;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 2px dashed var(--border-color);
-    font-size: 1rem;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease 2.5s, transform 0.3s ease 2.5s;
 }
-.repository-card.expanded .card-details {
-    max-height: 200px;
-    opacity: 1;
-}
-.card-details p {
+
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 0.5rem;
 }
-.map-link {
-    font-weight: 700;
-    color: var(--primary-color);
-    text-decoration: underline;
+.card-header h3 {
+    font-size: 1.5rem; /* h3 사이즈 */
 }
 
-/* --- 좋아요 버튼 --- */
+.card-menu {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* 카드 상세 정보 (숨김/표시) */
+.card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+.repository-card.expanded .card-details {
+    max-height: 200px; /* 확장 시 충분한 높이 */
+}
+.card-details p {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+.map-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: var(--dark-accent2-color);
+    text-decoration: none;
+}
+
+/* 좋아요 버튼 */
 .like-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
+    background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
 }
 .heart-icon {
-    width: 2rem;
-    height: 2rem;
-    transition: all 0.2s ease-in-out;
-}
-.like-btn .heart-icon {
-    color: #cccccc; /* 비활성화 색상 */
+    width: 24px;
+    height: 24px;
+    color: #CBD5E1; /* 기본 회색 */
+    transition: all 0.2s ease;
 }
 .like-btn.liked .heart-icon {
-    color: var(--primary-color);
-}
-.like-btn:hover .heart-icon {
-    transform: scale(1.2);
+    color: var(--primary-color); /* 오렌지 */
 }
 
-/* --- 더보기 & 키워드 --- */
+/* 더보기 버튼 */
 .see-more-container {
     text-align: center;
-    margin-top: 3rem;
-}
-
-.keyword-section {
-    margin-top: 5rem;
-}
-.keyword-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-.refresh-btn {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.5s ease;
-}
-.refresh-btn:hover {
-    transform: rotate(180deg);
-}
-.keyword-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-.keyword-tag {
-    background-color: var(--accent1-color);
-    padding: 0.5rem 1rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    border: 4px solid var(--border-color);
+    margin-top: 2rem;
 }

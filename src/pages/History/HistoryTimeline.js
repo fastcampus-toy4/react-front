@@ -96,12 +96,11 @@ function HistoryTimeline() {
 
     return (
         <div className="timeline-page">
-            <h1>채팅 기록</h1>
-            
+            <h1>채팅 기록</h1>         
             <div className="input-group search-wrapper">
                 <input
                     type="text"
-                    placeholder="기록의 제목을 검색해 보세요..."
+                    placeholder="기록의 제목을 검색해 보세요."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />

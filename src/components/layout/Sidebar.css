@@ -24,7 +24,7 @@
 }
 .chat-history {
   flex-grow: 1;
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 0 1rem;
   overflow-y: auto; /* 내용 많아지면 스크롤 */
 }
@@ -81,7 +81,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-weight: normal;
   padding: 0.5rem;
 }

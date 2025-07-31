@@ -8,11 +8,11 @@
 
 .timeline-page h1 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; 
 }
 
 .search-wrapper {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 /* 타임라인 세로선 */
@@ -34,7 +34,13 @@
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
+    margin-top: 2.5rem; 
 }
+
+.timeline-container > div:first-child .timeline-date-group {
+    margin-top: 0;
+}
+
 
 .timeline-date-icon-wrapper {
     width: 48px;
@@ -61,7 +67,7 @@
 .timeline-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* ✨ 카드 사이 간격 */
     padding-left: 64px; /* 아이콘 너비 + 여백 */
     position: relative;
 }
@@ -69,7 +75,7 @@
 .timeline-dot-wrapper {
     position: absolute;
     left: 16px; /* 세로선 중앙에 맞춤 */
-    top: 1.5rem; 
+    top: 1.25rem;
 }
 
 .timeline-dot {
@@ -80,15 +86,15 @@
     z-index: 10;
 }
 
-.timeline-card {
+.timeline-item .timeline-card {
     width: 100%;
     text-align: left;
-    padding: 1.5rem;
+    padding: 1.25rem 1.25rem 1rem; 
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.timeline-card:hover {
+.timeline-item .timeline-card:hover {
     transform: translateY(-4px);
     background-color: var(--accent2-color);
 }
@@ -101,7 +107,7 @@
 
 .card-title {
     font-size: 1.25rem; /* h4 사이즈 */
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem; /* 태그와의 간격 */
 }
 
 .card-tags {
