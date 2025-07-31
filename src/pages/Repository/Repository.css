@@ -27,7 +27,7 @@
     right: -100px;
 }
 
-/* 1. 키워드 섹션 (위로 이동했으므로 상단 여백 제거) */
+/* 1. 키워드 섹션 */
 .keyword-section {
     padding: 1.5rem;
     border: 4px solid var(--border-color);
@@ -41,35 +41,67 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem; /* 요소들 사이의 간격 */
 }
 .keyword-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center; /* 해시태그 가운데 정렬 */
+    gap: 0.75rem;
+    justify-content: center;
     flex-grow: 1; 
 }
-.keyword-tag {
+
+/* 키워드 버튼 스타일 */
+.keyword-btn {
     background-color: var(--accent1-color);
     color: var(--text-primary);
     padding: 0.25rem 0.75rem;
     font-weight: 700;
     font-size: 0.875rem;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
+.keyword-btn:hover {
+    background-color: var(--accent2-color);
+    transform: translateY(-2px);
+}
+.keyword-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 새로고침 버튼 디자인 개선 */
 .refresh-btn {
     background: transparent;
-    border: none;
-    font-size: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    margin-left: 1rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease, background-color 0.2s ease;
+    flex-shrink: 0; /* 버튼이 찌그러지지 않도록 */
 }
+.refresh-btn:hover {
+    transform: rotate(180deg);
+    background-color: var(--accent1-color);
+}
+.refresh-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-primary);
+}
+
 
 /* 2. 두 영역을 나누는 구분선 */
 .section-divider {
-    margin: 3rem 0; /* 위아래로 충분한 여백 */
+    margin: 3rem 0;
     border: none;
-    height: 4px; /* global.css 테두리 두께와 동일하게 */
-    background-color: var(--border-color); /* global.css 테두리 색상 사용 */
+    height: 4px;
+    background-color: var(--border-color);
 }
 
 
@@ -81,23 +113,19 @@
 /* 카드 그리드 레이아웃 */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3열 고정 그리드 */
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     align-items: start;
 }
 
 /* 개별 카드 스타일 */
 .repository-card {
+    /* global.css의 .card 스타일을 사용합니다. */
     text-align: left;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.repository-card.expanded {
-    /* 확장 시 스타일 (필요 시 추가) */
-}
-
 .repository-card.deleting {
-    /* 하트가 회색이 된 후, 2.5초 뒤에 사라지는 애니메이션이 실행됩니다. */
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 0.3s ease 2.5s, transform 0.3s ease 2.5s;
@@ -111,7 +139,9 @@
     margin-bottom: 0.5rem;
 }
 .card-header h3 {
-    font-size: 1.5rem; /* h3 사이즈 */
+    font-family: 'Anton', sans-serif;
+    color: var(--text-primary);
+    font-size: 1.5rem;
 }
 
 .card-menu {
@@ -127,7 +157,7 @@
     transition: max-height 0.5s ease;
 }
 .repository-card.expanded .card-details {
-    max-height: 200px; /* 확장 시 충분한 높이 */
+    max-height: 200px;
 }
 .card-details p {
     font-size: 0.875rem;
@@ -151,11 +181,11 @@
 .heart-icon {
     width: 24px;
     height: 24px;
-    color: #CBD5E1; /* 기본 회색 */
+    color: #CBD5E1;
     transition: all 0.2s ease;
 }
 .like-btn.liked .heart-icon {
-    color: var(--primary-color); /* 오렌지 */
+    color: var(--primary-color);
 }
 
 /* 더보기 버튼 */
