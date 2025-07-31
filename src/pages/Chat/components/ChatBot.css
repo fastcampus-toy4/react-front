@@ -147,3 +147,24 @@
   padding: 0 1rem 1rem 1rem;
   background-color: var(--accent2-color);
 }
+
+
+
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+.loading-indicator {
+  font-size: 1.5rem;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink { 50% { opacity: 0.3; } }
+.message.error {
+    background-color: #fff5f5;
+    color: #c53030;
+    border-color: #c53030;
+}

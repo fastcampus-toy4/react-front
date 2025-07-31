@@ -16,12 +16,10 @@ function App() {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/chat" element={<ChatPage />} />
         <Route path="/chat/:id" element={<ChatPage />} /> 
         <Route path="/repository" element={<RepositoryPage />} />
         <Route path="/history" element={<HistoryTimeline />} />
       </Route>
-
       <Route path="/login" element={<LoginPage />} />
       <Route path="/find-id" element={<FindIdPage />} />
       <Route path="/find-pw" element={<FindPwPage />} />
