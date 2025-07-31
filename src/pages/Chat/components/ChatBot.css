@@ -12,7 +12,9 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* ▼▼▼ 수정된 부분 ▼▼▼ */
+  gap: 0.75rem; /* 메시지 턴 간격을 1.5rem에서 0.75rem으로 줄였습니다. */
+  /* ▲▲▲ 수정된 부분 ▲▲▲ */
   overflow-y: auto;
 }
 
@@ -103,7 +105,7 @@
   max-width: 750px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* 텍스트가 길어져도 버튼이 하단에 오도록 */
   gap: 1rem;
 }
 .input-area textarea {
@@ -125,14 +127,13 @@
 }
 
 /* 전송 버튼 */
-.send-button {
-  /* global.css의 .btn, .btn-primary 스타일을 따름 */
-  padding: 0.75rem;
-  width: 56px; /* 정사각형 느낌 */
-  height: 56px;
-  font-size: 1.5rem;
-  flex-shrink: 0;
+.input-area .send-button {
+  /* global.css의 .btn 스타일(padding: 1rem 2rem)을 덮어쓰기 위해,
+     선택자를 더 구체적으로 작성하고 padding을 재정의합니다. */
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 */
+  padding: 0.75rem 1.5rem; /* textarea와 동일한 세로 패딩 적용 */
 }
+
 .send-button:disabled {
   background-color: #A0AEC0; /* 비활성화 색상 */
   border-color: #A0AEC0;
@@ -147,9 +148,6 @@
   padding: 0 1rem 1rem 1rem;
   background-color: var(--accent2-color);
 }
-
-
-
 
 .recommendations-grid {
   display: grid;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
-function ChatInput({ onSend }) {
+function ChatInput({ onSend, disabled: isLoading }) {
   const [input, setInput] = useState('');
 
   const handleSendMessage = () => {
@@ -12,6 +12,7 @@ function ChatInput({ onSend }) {
   };
 
   const handleKeyPress = (e) => {
+    // 한글 입력 중 Enter 키 입력을 방지합니다.
     if (e.nativeEvent.isComposing) return;
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -29,13 +30,14 @@ function ChatInput({ onSend }) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
+            disabled={isLoading} 
           />
           <button
             onClick={handleSendMessage}
-            className="btn btn-primary send-button" // global.css 클래스 적용
-            disabled={input.trim() === ''}
+            className="btn btn-primary send-button"
+            disabled={input.trim() === '' || isLoading}
           >
-            ↑
+            전송
           </button>
         </div>
       </div>
