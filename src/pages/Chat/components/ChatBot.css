@@ -1,10 +1,10 @@
-/* ChatBot.css (사용자 정의 테마 적용) */
+/* ChatBot.css */
 
 .chatbot-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: var(--background-color); /* 아이보리 */
+  background-color: var(--background-color);
 }
 
 .message-area {
@@ -12,9 +12,7 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  /* ▼▼▼ 수정된 부분 ▼▼▼ */
-  gap: 0.75rem; /* 메시지 턴 간격을 1.5rem에서 0.75rem으로 줄였습니다. */
-  /* ▲▲▲ 수정된 부분 ▲▲▲ */
+  gap: 0.75rem;
   overflow-y: auto;
 }
 
@@ -25,7 +23,7 @@
   width: fit-content;
   line-height: 1.5;
   white-space: pre-wrap;
-  border-radius: 0; /* global.css 규칙 */
+  border-radius: 0;
   font-size: 1rem;
 }
 
@@ -39,7 +37,7 @@
 
 /* 사용자 말풍선 */
 .message.user { 
-  background-color: var(--dark-accent2-color); /* 블루 */
+  background-color: var(--dark-accent2-color);
   color: var(--text-on-dark);
   align-self: flex-end; 
 }
@@ -105,11 +103,10 @@
   max-width: 750px;
   margin: 0 auto;
   display: flex;
-  align-items: flex-end; /* 텍스트가 길어져도 버튼이 하단에 오도록 */
+  align-items: flex-end; /* 텍스트가 길어져도 버튼이 하단에 오도록(?) */
   gap: 1rem;
 }
 .input-area textarea {
-  /* global.css의 .input-group input 스타일을 따름 */
   flex-grow: 1;
   width: 100%;
   padding: 0.75rem 1rem;
@@ -128,14 +125,12 @@
 
 /* 전송 버튼 */
 .input-area .send-button {
-  /* global.css의 .btn 스타일(padding: 1rem 2rem)을 덮어쓰기 위해,
-     선택자를 더 구체적으로 작성하고 padding을 재정의합니다. */
-  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 */
-  padding: 0.75rem 1.5rem; /* textarea와 동일한 세로 패딩 적용 */
+  flex-shrink: 0;
+  padding: 0.75rem 1.5rem;
 }
 
 .send-button:disabled {
-  background-color: #A0AEC0; /* 비활성화 색상 */
+  background-color: #A0AEC0;
   border-color: #A0AEC0;
   cursor: not-allowed;
 }
