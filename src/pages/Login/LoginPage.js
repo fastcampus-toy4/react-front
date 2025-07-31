@@ -30,7 +30,7 @@ function LoginPage() {
     e.preventDefault();
     try {
         const response = await axios.post(
-          'http://localhost:8080/api/auth/login',
+          'http://spring:8080/api/auth/login',
           {
             email,
             password
