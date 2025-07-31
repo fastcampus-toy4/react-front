@@ -1,4 +1,5 @@
 {
+  "proxy": "155.248.175.96:8080",
   "name": "toy4",
   "version": "0.1.0",
   "private": true,

@@ -26,40 +26,61 @@ function LoginPage() {
     return () => clearInterval(intervalId);
   }, []);
 
-const handleLogin = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await axios.post(
-      'http://155.248.175.96:8080/api/auth/login',
-      {
-        email,
-        password
-      },
-      {
-        withCredentials: true
+// const handleLogin = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const response = await axios.post(
+//       'http://155.248.175.96:8080/api/auth/login',
+//       {
+//         email,
+//         password
+//       },
+//       {
+//         withCredentials: true
+//       }
+//     );
+//     console.log('로그인 성공:', response.data);
+//     navigate('/');
+//   } catch (err) {
+//     console.error('🚨 로그인 실패!!!');
+//     if (err.response) {
+//       // 서버가 응답했지만 status가 2xx가 아님
+//       console.error('📡 응답 상태:', err.response.status);
+//       console.error('🧾 응답 데이터:', err.response.data);
+//       console.error('📄 응답 헤더:', err.response.headers);
+//     } else if (err.request) {
+//       // 요청이 전송되었지만 응답 없음
+//       console.error('⏳ 요청 보냈지만 응답 없음:', err.request);
+//     } else {
+//       // 요청 설정 중 오류
+//       console.error('⚙️ 요청 중 오류 발생:', err.message);
+//     }
+//     console.error('📌 전체 에러 정보:', err.toJSON ? err.toJSON() : err);
+//   }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password })
+      });
+      if (res.ok) {
+        // 로그인 성공 시 홈으로 이동
+        navigate('/');
+      } else {
+        const data = await res.json();
+        alert(`로그인 실패: ${data.message || res.statusText}`);
       }
-    );
-    console.log('로그인 성공:', response.data);
-    navigate('/');
-  } catch (err) {
-    console.error('🚨 로그인 실패!!!');
-    if (err.response) {
-      // 서버가 응답했지만 status가 2xx가 아님
-      console.error('📡 응답 상태:', err.response.status);
-      console.error('🧾 응답 데이터:', err.response.data);
-      console.error('📄 응답 헤더:', err.response.headers);
-    } else if (err.request) {
-      // 요청이 전송되었지만 응답 없음
-      console.error('⏳ 요청 보냈지만 응답 없음:', err.request);
-    } else {
-      // 요청 설정 중 오류
-      console.error('⚙️ 요청 중 오류 발생:', err.message);
+    } catch (err) {
+      console.error('Login error:', err);
+      alert('네트워크 오류가 발생했습니다.');
     }
-    console.error('📌 전체 에러 정보:', err.toJSON ? err.toJSON() : err);
-  }
+  };
 
-  console.log('📝 로그인 시도 정보:', { email, password });
-};
+//   console.log('📝 로그인 시도 정보:', { email, password });
+// };
 
   return (
     <div className="login-page-container"> 
