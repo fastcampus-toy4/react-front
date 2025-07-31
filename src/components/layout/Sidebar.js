@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// Link 대신 NavLink를 import 합니다.
+import { NavLink, Link } from 'react-router-dom';
 import './Sidebar.css';
 import newChatIcon from 'assets/images/newchatting.png';
 import searchIcon from 'assets/images/search.png';
@@ -41,39 +42,40 @@ function Sidebar({ isOpen, onToggle }) {
       </div>
 
       <div className="sidebar-menu">
-        <Link to="/" className="sidebar-button">
+        {/* NavLink를 사용하여 활성화된 링크에 스타일을 적용합니다. */}
+        <NavLink to="/" className="sidebar-button" end>
           <img src={newChatIcon} alt="새 채팅" className="button-icon" />
           <span className="button-text">새 채팅</span>
-        </Link>
-        <Link to="/history" className="sidebar-button">
+        </NavLink>
+        <NavLink to="/history" className="sidebar-button">
           <img src={searchIcon} alt="채팅 검색" className="button-icon" />
           <span className="button-text">채팅 검색</span>
-        </Link>
-        <Link to="/repository" className="sidebar-button">
+        </NavLink>
+        <NavLink to="/repository" className="sidebar-button">
           <img src={repositoryIcon} alt="맛집 보관함" className="button-icon" />
           <span className="button-text">맛집 보관함</span>
-        </Link>
+        </NavLink>
       </div>
       
       <div className="chat-history">
         <h3 className="history-title">채팅 기록</h3>
         
         {chatHistory.map((chat) => (
-          <Link 
+          <NavLink 
             to={`/chat/${chat.chatId}`} 
             key={chat.chatId} 
             className="history-item"
           >
             <span className="history-item-text">{chat.title}</span>
-          </Link>
+          </NavLink>
         ))}
       </div>
 
       <div className="sidebar-footer">
-        <Link to="/login" className="sidebar-button">
+        <NavLink to="/login" className="sidebar-button">
           <img src={loginIcon} alt="로그인" className="button-icon" />
           <span className="button-text">로그인</span>
-        </Link>
+        </NavLink>
       </div>
     </div>
   );

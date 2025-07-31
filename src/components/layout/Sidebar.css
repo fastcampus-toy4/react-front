@@ -38,7 +38,7 @@
 /* --- 공통 UI 요소 그룹 --- */
 .sidebar-button,
 .history-item {
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   width: 100%;
   cursor: pointer;
   display: flex;
@@ -47,11 +47,18 @@
   color: var(--text-on-dark);
   font-weight: 700;
   transition: background-color 0.2s;
+  border-radius: 8px;
 }
+
 .sidebar-button:hover,
-.history-item:hover {
+.sidebar-button.active,
+.history-item:hover,
+.history-item.active {
   background-color: var(--dark-accent2-color); /* 블루 */
+  border-radius: 8px;
+  padding: 0.5rem ;
 }
+
 
 /* --- 개별 UI 요소 --- */
 .toggle-button {
@@ -70,7 +77,6 @@
   height: 24px;
 }
 .history-title {
-  /* global.css의 h-태그 스타일을 따르지만, 색상만 변경 */
   font-family: 'Anton', sans-serif;
   color: var(--primary-color); /* 오렌지 */
   font-size: 1.25rem;
@@ -82,9 +88,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: normal;
-  padding: 0.5rem;
 }
 
 /* --- 축소 상태(:not(.open)) 스타일 --- */
