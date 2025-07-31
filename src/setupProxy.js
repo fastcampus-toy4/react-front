@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://155.248.175.96:8080',
+      target: 'http://spring-boot-app:8080',
       changeOrigin: true,
     })
   );
